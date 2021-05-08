@@ -1,3 +1,3 @@
 module.exports = {
-  projects: ['<rootDir>/apps/ambiate'],
+  projects: ['<rootDir>/apps/ambiate', '<rootDir>/libs/wamp'],
 };

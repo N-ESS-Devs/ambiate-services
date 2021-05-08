@@ -1,8 +1,6 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/express"
-  },
+  "cli": { "defaultCollection": "@nrwl/express" },
   "defaultProject": "ambiate",
   "projects": {
     "ambiate": {
@@ -35,21 +33,36 @@
         },
         "serve": {
           "executor": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "ambiate:build"
-          }
+          "options": { "buildTarget": "ambiate:build" }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/ambiate/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["apps/ambiate/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/ambiate"],
           "options": {
             "jestConfig": "apps/ambiate/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "wamp": {
+      "root": "libs/wamp",
+      "sourceRoot": "libs/wamp/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/wamp/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/wamp"],
+          "options": {
+            "jestConfig": "libs/wamp/jest.config.js",
             "passWithNoTests": true
           }
         }
