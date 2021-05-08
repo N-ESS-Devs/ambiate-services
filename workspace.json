@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/express"
+  },
+  "defaultProject": "ambiate",
+  "projects": {
+    "ambiate": {
+      "root": "apps/ambiate",
+      "sourceRoot": "apps/ambiate/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/ambiate",
+            "main": "apps/ambiate/src/main.ts",
+            "tsConfig": "apps/ambiate/tsconfig.app.json",
+            "assets": ["apps/ambiate/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/ambiate/src/environments/environment.ts",
+                  "with": "apps/ambiate/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "ambiate:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/ambiate/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/ambiate"],
+          "options": {
+            "jestConfig": "apps/ambiate/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
+}
